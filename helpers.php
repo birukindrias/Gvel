@@ -26,9 +26,5 @@ if (!function_exists('redirect')) {
         header("Location: " . $path);
         exit;  // Make sure the script ends after redirecting
     }
-    function redirect($path)
-    {
-        var_dump($path);
-        return  header("location: " . $path);
-    }
+  
 }
