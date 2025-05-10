@@ -167,7 +167,7 @@ class App
         $reflection = new ReflectionClass($class);
 
         if (!$reflection->isInstantiable()) {
-            throw new Exception("Class {$class} is not instantiable.");
+            throw new \Exception("Class {$class} is not instantiable.");
         }
 
         $constructor = $reflection->getConstructor();
@@ -182,7 +182,7 @@ class App
         foreach ($params as $param) {
             $type = $param->getType();
             if (!$type || $type->isBuiltin()) {
-                throw new Exception("Cannot resolve parameter {$param->name}");
+                throw new \Exception("Cannot resolve parameter {$param->name}");
             }
             $dependencies[] = $this->resolve($type->getName());
         }
@@ -245,12 +245,12 @@ class App
         #find it from there 
         #and to set it set it from there 
         # code...
-        $path = dirname(__DIR__) . '/.env';
+        $path = getcwd() . '/.env';
         /*var_dump(file_get_contents($env)*/
         /*);*/
 
         if (!file_exists($path)) {
-            throw new Exception(".env file not found at: $path");
+            throw new \Exception(".env file not found at: $path");
         }
 
         $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
