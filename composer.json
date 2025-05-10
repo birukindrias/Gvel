@@ -1,0 +1,24 @@
+{
+  "name": "gvel/gigavel",
+  "description": "Configuration handler for Gigavel",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Gvel\\": "./"
+    },
+    "files": [
+      "./helpers.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "birukindrias",
+      "email": "hello@iambiruk.com",
+      "homepage": "https://iambiruk.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "stable"
+}
+
