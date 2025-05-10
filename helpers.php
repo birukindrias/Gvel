@@ -1,6 +1,6 @@
 <?php
 
-use App\config\App;
+use Gvel\App;
 
 if (!function_exists('view')) {
     function view(string $path, array $data = [])

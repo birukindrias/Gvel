@@ -1,6 +1,6 @@
 <?php
 
-namespace App\config;
+namespace Gvel;
 
 use PDO;
 use PDOException;

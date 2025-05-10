@@ -1,5 +1,5 @@
 <?php
-namespace App\config;
+namespace Gvel;
 trait Texts
 {
    public  $filemig = '<?php

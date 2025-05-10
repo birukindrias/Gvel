@@ -1,9 +1,8 @@
 <?php
 
-namespace App\config;
+namespace Gvel;
 
-use App\app\Http\Controllers\UserController;
-use App\config\Route;
+use Gvel\Route;
 use PDO;
 use ReflectionClass;
 
