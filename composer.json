@@ -1,7 +1,6 @@
 {
   "name": "gvel/gigavel",
-  "description": "Configuration handler for Gigavel",
-  "type": "library",
+  "description": "Gvel is the core engine of the Gigavel PHP framework — a fast, lightweight foundation for modern web applications.",  "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
