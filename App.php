@@ -44,8 +44,8 @@ class App
     $routes = [];
 
     // 1. Set your controller folder and base namespace
-    $controllerDir = __DIR__ . '/../app/Http/Controllers';
-    $baseNamespace = 'App\\app\\Http\\Controllers\\';
+    $controllerDir = dirname(__DIR__, 3). '/app/Http/Controllers';
+    $baseNamespace = 'App\\Http\\Controllers\\';
 
     // 2. Scan all PHP files in the controller folder
     $controllerFiles = glob("$controllerDir/*.php");
@@ -194,7 +194,9 @@ class App
     {
 
 
-        if (file_exists(dirname(__DIR__) . '/resources/views/' . $page . '.php')) {
+        $projectRoot = dirname(__DIR__, 3); // adjust based on nesting
+        $path = $projectRoot . '/resources/views/' . $page . '.php';
+        if (file_exists($path)) {
             // echo 'yes';
             // exit;
             // function render_view($viewFile) {
@@ -211,7 +213,8 @@ class App
     public function getLayout()
     {
         ob_start();
-        include_once dirname(__DIR__) . '/resources/views/layout/' . $this->layout . '.php';
+        include_once dirname(__DIR__, 3) . '/resources/views/layout/' . $this->layout . '.php';
+        var_dump(dirname(__DIR__, 3) . '/resources/views/layout/' . $this->layout . '.php');
         return ob_get_clean();
     }
     public function getPage($page, $data)
@@ -245,7 +248,14 @@ class App
         #find it from there 
         #and to set it set it from there 
         # code...
-        $path = getcwd() . '/.env';
+        // $path = getcwd()  . '/.env';
+        $projectRoot = dirname(__DIR__, 3); // adjust based on nesting
+        $path = $projectRoot . '/.env';
+    
+        if (!file_exists($path)) {
+            throw new \Exception(".env file not found at: {$path}");
+        }
+    
         /*var_dump(file_get_contents($env)*/
         /*);*/
 
