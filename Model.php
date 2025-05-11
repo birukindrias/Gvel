@@ -1,7 +1,8 @@
 <?php
 
-namespace App\config;
+namespace Gvel;
 
+use Gvel\App;
 use PDO;
 
 abstract class Model
