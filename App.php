@@ -222,7 +222,7 @@ class App
         foreach ($data as $key => $value) {
             $$key = $value;
         }
-        $viewPath = dirname(__DIR__) . '/resources/views/' . $page . '.php';
+        $viewPath = dirname(__DIR__, 3) . '/resources/views/' . $page . '.php';
 
         if (!file_exists($viewPath)) {
             return false;
@@ -231,7 +231,7 @@ class App
         $content = file_get_contents($viewPath);
 
         $content = preg_replace_callback('/@import\(\'(.*?)\'\)/', function ($matches) {
-            $includeFile = dirname(__DIR__) . '/resources/views/' . $matches[1];
+            $includeFile = dirname(__DIR__, 3) . '/resources/views/' . $matches[1];
             return file_exists($includeFile) ? file_get_contents($includeFile) : " File not found: {$matches[1]}";
         }, $content);
 
