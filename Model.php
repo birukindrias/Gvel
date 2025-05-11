@@ -38,7 +38,6 @@ abstract class Model
             $sql = "INSERT INTO {$table} (" . implode(',', $columns) . ") VALUES (" . implode(',', $placeholders) . ")";
 
             // Debugging
-            var_dump($sql);
 
             $app = new App('db'); // assuming this returns db object with ->prepare()
 
@@ -47,7 +46,6 @@ abstract class Model
             foreach ($array as $key => $value) {
                 $stmt->bindValue(":$key", $value);
             }
-            var_dump($stmt);
             return $stmt->execute();
         } catch (\Throwable $th) {
             throw $th;
@@ -83,7 +81,6 @@ abstract class Model
 
 
         //  $sql = "INSERT INTO $table (" . implode(',', array_keys($array)) . ") VALUES (" . implode(',',array_values($array)) . ")";
-        var_dump($sql);
         $app = new App('db');
         $stmt = $app->db->prepare($sql);
         //  App::$app->db->prepare($sql);
@@ -101,11 +98,9 @@ abstract class Model
             $columns = $this->fillable;
         }
 
-        var_dump($this->fillable);
 
         $placeholders = array_map(fn($col) => ":$col", $array);
         $sql = "INSERT INTO $table (" . implode(',', $array) . ") VALUES (" . implode(',', $placeholders) . ")";
-        var_dump($sql);
         $app = new App('db');
         $stmt = $app->db->prepare($sql);
         //  App::$app->db->prepare($sql);
@@ -134,10 +129,8 @@ abstract class Model
     public static function get(): array
     {
         $table = static::$table;
-        var_dump($table);
         $stmt = App::$app->db->prepare("SELECT * FROM $table");
         $stmt->execute();
-        // var_dump(array_reverse($stmt->fetchAll(PDO::FETCH_ASSOC)));
         return array_reverse($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
     public static function gets(): array
