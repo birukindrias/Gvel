@@ -34,7 +34,7 @@ class Database
             );
 
             if ($type === 'sqlite') {
-                $path = dirname(__DIR__). '/database/' . $_ENV['DB_DATABASE'] ?? '';
+                $path = dirname(__DIR__, 3) . '/database/' . $_ENV['DB_DATABASE'] ?? '';
                 if (!file_exists($path)) {
                     mkdir(dirname($path), 0777, true);
                     touch($path);
@@ -62,7 +62,7 @@ class Database
     public static function applyMigrations(string $mode)
     {
         $self = new self();
-        $path = dirname(__DIR__) . '/database/Migrations/';
+        $path = dirname(__DIR__, 3)  . '/database/Migrations/';
         $writtenMigrations = array_filter(scandir($path), fn($file) => pathinfo($file, PATHINFO_EXTENSION) === 'php');
         $self->createMigrationsTable();
         $existing = $self->existingMigrations();
